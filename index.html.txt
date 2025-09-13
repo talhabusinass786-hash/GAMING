@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Game Hub - 15 Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle at top,#0f0c29,#302b63,#24243e);
+  color:#fff;
+  text-align:center;
+}
+body::before {
+  content:"";
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: url('https://i.ibb.co/Y3Rz4X1/retro-game-bg.gif') center/cover no-repeat;
+  opacity:0.15; z-index:-1;
+}
+header {
+  padding: 30px;
+  font-size:2rem;
+  color:#00FFF7;
+  text-shadow:0 0 10px #00FFF7,0 0 20px #FF00FF;
+}
+.tabs {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin:10px 0;
+}
+.tab-btn {
+  background: #1F2937;
+  color: #FF00FF;
+  border: none;
+  padding:10px 15px;
+  margin:5px;
+  border-radius:8px;
+  cursor:pointer;
+  transition: 0.3s;
+  font-family:'Press Start 2P',cursive;
+}
+.tab-btn:hover { background:#111827; box-shadow:0 0 10px #00FFF7; }
+.tab-btn.active { background:#111827; box-shadow:0 0 20px #FF00FF,0 0 40px #00FFF7; }
+.game-section {
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(31,41,55,0.95);
+  border-radius: 12px;
+  width:90%;
+  max-width:600px;
+  box-shadow:0 0 15px #FF00FF,0 0 25px #00FFF7;
+  display:none;
+}
+canvas { border:2px solid #00FFF7; display:block; margin:0 auto; }
+h2 { color:#FF00FF; margin-bottom:10px; }
+footer { text-align:center; padding:20px; color:#6B7280; font-size:0.9rem; }
+</style>
+</head>
+<body>
+
+<header>Pro Game Hub - 15 Fully Embedded HTML5 Games</header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showGame('snake')">Snake</button>
+  <button class="tab-btn" onclick="showGame('flappy')">Flappy</button>
+  <button class="tab-btn" onclick="showGame('breakout')">Breakout</button>
+  <button class="tab-btn" onclick="showGame('platformer')">Platformer</button>
+  <button class="tab-btn" onclick="showGame('pong')">Pong</button>
+  <button class="tab-btn" onclick="showGame('memory')">Memory</button>
+  <button class="tab-btn" onclick="showGame('ballbounce')">Ball Bounce</button>
+  <button class="tab-btn" onclick="showGame('maze')">Maze</button>
+  <button class="tab-btn" onclick="showGame('balloon')">Balloon</button>
+  <button class="tab-btn" onclick="showGame('car')">Car Racing</button>
+  <button class="tab-btn" onclick="showGame('shooter')">Shooter</button>
+  <button class="tab-btn" onclick="showGame('ninja')">Ninja</button>
+  <button class="tab-btn" onclick="showGame('tower')">Tower Defense</button>
+  <button class="tab-btn" onclick="showGame('tictactoe')">Tic Tac Toe</button>
+  <button class="tab-btn" onclick="showGame('connect4')">Connect 4</button>
+</div>
+
+<!-- ===== Game Sections ===== -->
+<div id="snake" class="game-section">
+  <h2>Snake Game</h2>
+  <canvas id="snakeCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="flappy" class="game-section">
+  <h2>Flappy Bird</h2>
+  <canvas id="flappyCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="breakout" class="game-section">
+  <h2>Breakout</h2>
+  <canvas id="breakoutCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="platformer" class="game-section">
+  <h2>Platform Jumper</h2>
+  <canvas id="platformerCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="pong" class="game-section">
+  <h2>Pong</h2>
+  <canvas id="pongCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="memory" class="game-section">
+  <h2>Memory Match</h2>
+  <div id="memoryGame"></div>
+</div>
+
+<div id="ballbounce" class="game-section">
+  <h2>Ball Bounce</h2>
+  <canvas id="ballBounceCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="maze" class="game-section">
+  <h2>Maze Runner</h2>
+  <canvas id="mazeCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="balloon" class="game-section">
+  <h2>Balloon Pop</h2>
+  <canvas id="balloonCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="car" class="game-section">
+  <h2>Car Racing</h2>
+  <canvas id="carCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="shooter" class="game-section">
+  <h2>Space Shooter</h2>
+  <canvas id="shooterCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="ninja" class="game-section">
+  <h2>Jumping Ninja</h2>
+  <canvas id="ninjaCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="tower" class="game-section">
+  <h2>Tower Defense</h2>
+  <canvas id="towerCanvas" width="400" height="400"></canvas>
+</div>
+
+<div id="tictactoe" class="game-section">
+  <h2>Tic Tac Toe</h2>
+  <table id="ticTacToe" style="margin:0 auto;border-collapse:collapse;">
+    <tr><td data-cell="0" style="width:60px;height:60px;border:1px solid #fff;font-size:2rem;"></td>
+        <td data-cell="1" style="border:1px solid #fff;"></td>
+        <td data-cell="2" style="border:1px solid #fff;"></td></tr>
+    <tr><td data-cell="3" style="border:1px solid #fff;"></td>
+        <td data-cell="4" style="border:1px solid #fff;"></td>
+        <td data-cell="5" style="border:1px solid #fff;"></td></tr>
+    <tr><td data-cell="6" style="border:1px solid #fff;"></td>
+        <td data-cell="7" style="border:1px solid #fff;"></td>
+        <td data-cell="8" style="border:1px solid #fff;"></td></tr>
+  </table>
+</div>
+
+<div id="connect4" class="game-section">
+  <h2>Connect 4</h2>
+  <div id="connect4Game"></div>
+</div>
+
+<footer>&copy; 2025 Pro Game Hub. All rights reserved.</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+// Tab Function
+function showGame(gameId){
+  document.querySelectorAll('.game-section').forEach(g=>g.style.display='none');
+  document.getElementById(gameId).style.display='block';
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+// Show first game by default
+showGame('snake');
+</script>
+
+<!-- ===== Game JS Examples (Snake, Flappy, Pong) ===== -->
+<script>
+// --- Snake Game ---
+const canvasS = document.getElementById("snakeCanvas");
+const ctxS = canvasS.getContext("2d");
+let box=20,snake=[{x:9*box,y:10*box}],score=0;
+let food={x:Math.floor(Math.random()*19+1)*box, y:Math.floor(Math.random()*19+1)*box};
+let d;
+document.addEventListener("keydown", e=>{if(e.keyCode==37&&d!="RIGHT")d="LEFT"; if(e.keyCode==38&&d!="DOWN")d="UP"; if(e.keyCode==39&&d!="LEFT")d="RIGHT"; if(e.keyCode==40&&d!="UP")d="DOWN";});
+function collision(head,array){for(let i=0;i<array.length;i++){if(head.x==array[i].x&&head.y==array[i].y)return true;} return false;}
+function drawSnake(){
+  ctxS.fillStyle="black"; ctxS.fillRect(0,0,canvasS.width,canvasS.height);
+  for(let i=0;i<snake.length;i++){ctxS.fillStyle=(i==0)?"lime":"white"; ctxS.fillRect(snake[i].x,snake[i].y,box,box);}
+  ctxS.fillStyle="red"; ctxS.fillRect(food.x,food.y,box,box);
+  let snakeX=snake[0].x, snakeY=snake[0].y;
+  if(d=="LEFT")snakeX-=box; if(d=="UP")snakeY-=box; if(d=="RIGHT")snakeX+=box; if(d=="DOWN")snakeY+=box;
+  if(snakeX==food.x&&snakeY==food.y){score++; food={x:Math.floor(Math.random()*19+1)*box,y:Math.floor(Math.random()*19+1)*box;} } else snake.pop();
+  let newHead={x:snakeX,y:snakeY};
+  if(snakeX<0||snakeY<0||snakeX>=canvasS.width||snakeY>=canvasS.height||collision(newHead,snake)){alert("Snake Game Over! Score: "+score);snake=[{x:9*box,y:10*box}];score=0; d=null;}
+  snake.unshift(newHead);
+  ctxS.fillStyle="white"; ctxS.font="20px Arial"; ctxS.fillText("Score: "+score,10,20);
+}
+setInterval(drawSnake,100);
+
+// --- Flappy Bird (Simplified Example) ---
+const canvasF=document.getElementById("flappyCanvas");
+const ctxF=canvasF.getContext("2d");
+let flappyY=200, flappyX=50, flappyDY=0, gravity=0.6;
+document.addEventListener("keydown", ()=>{flappyDY=-10;});
+function drawFlappy(){
+  ctx
